@@ -7,17 +7,21 @@ class Solution {
         double median = 0;
         int middle = 0;
         int [] merged = new int[length];
+        //add the two arrays into one
         for (int i = 0; i < m; i++) {
             merged[i] = nums1[i];
         }
         for (int i = 0; i < n; i++) {
             merged[m + i] = nums2[i];
         }
+        //sort the combined array
         Arrays.sort(merged);
+        //is it even?
         if (length%2 == 0){
             middle = length/2;
             median = (merged[middle] + merged [middle-1])/2.0;
-        }else{
+        }else{ 
+            //is it odd? take the middle value
             median = merged[length/2];
         }
         return median;
