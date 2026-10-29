@@ -2,21 +2,16 @@ import java.util.HashSet;
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         HashSet<Character> noRepeats = new HashSet<Character>();
-        int current = noRepeats.size();
+        int left = 0;
         int longest = 0;
-        for(int i = 0; i < s.length(); i++){
-            noRepeats.clear();
-            for(int j = i; j < s.length(); j++ ){
-                if(noRepeats.contains(s.charAt(j))){
-                    break;
-                }
-                else{
-                    noRepeats.add(s.charAt(j));
-                    current = noRepeats.size();
-                    if(current > longest){
-                        longest = current; 
-                    }
-                }
+        for(int right = 0; right < s.length(); right++){
+            while(noRepeats.contains(s.charAt(right))){
+                noRepeats.remove(s.charAt(left));
+                left++;
+            }
+            noRepeats.add(s.charAt(right));
+            if(noRepeats.size() > longest){
+                longest = noRepeats.size();
             }
         }
         return longest;
